@@ -22,7 +22,7 @@ class _GzipStreamFile(object):
     # TODO: Update this to use unconsumed_tail and a StringIO buffer
     # http://docs.python.org/2/library/zlib.html#zlib.Decompress.unconsumed_tail
     # Check if we need to start a new decoder
-    if self.decoder and self.decoder.unused_data:
+    while self.decoder and self.decoder.unused_data:
       self.restart_decoder()
     # Use unused data first
     if len(self.unused_buffer) > size:
